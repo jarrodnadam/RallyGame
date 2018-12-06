@@ -19,6 +19,9 @@ public enum StaticWorld {
 
 	dragstrip("dragstrip.blend", 10, new Vector3f(0,0,0), null, false),
 	
+	//jarrod
+	ring("ring.blend", 5, new Vector3f(0,0,0), null, true),
+	
 	//other peoples:
 	track2("track2.blend", 1, new Vector3f(0,0,0), H.FromAngleAxis(FastMath.PI, Vector3f.UNIT_Y), false),
 	carpark("carpark.blend", 1, new Vector3f(0,0,0), null, false),

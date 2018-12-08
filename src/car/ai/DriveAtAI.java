@@ -40,11 +40,11 @@ public class DriveAtAI extends CarAI {
 			}
 	
 			if (velocity < 1 && car.up.y < 0) { //if very still and not the right way up then flip over
-				onEvent("Flip", true, 1);
+				onAction("Flip", true, 1);
 			}
 		} else {
 			//currently reversing
-			onEvent("Reverse", true, 1);
+			onAction("Reverse", true, 1);
 			Log.e("reversing");
 			reversingTimer -= tpf;
 			if (reversingTimer < 0)
@@ -73,25 +73,25 @@ public class DriveAtAI extends CarAI {
 		
 		//turn towards player
 		if (ang > FastMath.HALF_PI) {
-			onEvent("Left", false, 0);
-			onEvent("Right", true, turndeg);
+			onAction("Left", false, 0);
+			onAction("Right", true, turndeg);
 		} else {
-			onEvent("Right", false, 0);
-			onEvent("Left", true, turndeg);
+			onAction("Right", false, 0);
+			onAction("Left", true, turndeg);
 		}
 		//slow down to turn
 		if (FastMath.abs(angF) < FastMath.QUARTER_PI) {
-			onEvent("Brake", false, 0);
-			onEvent("Accel", true, 1);
+			onAction("Brake", false, 0);
+			onAction("Accel", true, 1);
 		} else {
-			onEvent("Brake", true, 1);
-			onEvent("Accel", false, 0);
+			onAction("Brake", true, 1);
+			onAction("Accel", false, 0);
 		}
 		
 		//if going to slow speed up
 		if (velocity < 10) {
-			onEvent("Accel", true, 1);
-			onEvent("Brake", false, 0);
+			onAction("Accel", true, 1);
+			onAction("Brake", false, 0);
 		}
 		
 		//TODO some kind of ray cast so they can drive around things properly

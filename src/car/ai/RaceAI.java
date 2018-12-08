@@ -40,33 +40,33 @@ public class RaceAI extends CarAI {
 		
 		//turn towards 
 		if (nowTurn < 0) {
-			onEvent("Left", false, 0);
-			onEvent("Right", true, Math.abs(nowTurn)*reverse);
+			onAction("Left", false, 0);
+			onAction("Right", true, Math.abs(nowTurn)*reverse);
 		} else {
-			onEvent("Right", false, 0);
-			onEvent("Left", true, Math.abs(nowTurn)*reverse);
+			onAction("Right", false, 0);
+			onAction("Left", true, Math.abs(nowTurn)*reverse);
 		}
 		//slow down to turn
 		if (FastMath.abs(angF) < FastMath.QUARTER_PI) {
-			onEvent("Brake", false, 0);
-			onEvent("Accel", true, 1);
+			onAction("Brake", false, 0);
+			onAction("Accel", true, 1);
 		} else {
-			onEvent("Brake", true, 1);
-			onEvent("Accel", false, 0);
+			onAction("Brake", true, 1);
+			onAction("Accel", false, 0);
 		}
 		
 		//if going to slow speed up
 		if (car.getLinearVelocity().length() < 10) {
-			onEvent("Accel", true, 1);
-			onEvent("Brake", false, 0);
+			onAction("Accel", true, 1);
+			onAction("Brake", false, 0);
 			
 			if (car.getLinearVelocity().length() < 1 && car.up.y < 0) { //very still
-				onEvent("Flip", true, 1);
+				onAction("Flip", true, 1);
 			}
 		}
 		if (car.getLinearVelocity().length() > 20) {
-			onEvent("Accel", false, 0); //don't go too fast
-			onEvent("Brake", false, 0);
+			onAction("Accel", false, 0); //don't go too fast
+			onAction("Brake", false, 0);
 		}
 		
 		//TODO some kind of ray cast so they can drive around things at all

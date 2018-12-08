@@ -12,7 +12,7 @@ public abstract class CarAI {
 	
 	public abstract void update(float tpf);
 	
-	protected void onEvent(String act, boolean ifdown, float amnt) {
+	protected void onAction(String act, boolean ifdown, float amnt) {
 		car.onAction(act, ifdown, amnt);
 	}
 }

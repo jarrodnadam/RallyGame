@@ -11,12 +11,12 @@ import drive.DriveRace;
 import helper.Log;
 import world.wp.DefaultBuilder;
 
-public class LinearLearnAI extends CarAI {
+public class NeuralLearnAI extends CarAI {
 
 	private DefaultBuilder world;
 	NeuralNetwork NN;
 	
-	public LinearLearnAI(RayCarControl car, DefaultBuilder world) {
+	public NeuralLearnAI(RayCarControl car, DefaultBuilder world) {
 		super(car);
 		this.world = world;
 		int[] sizes = new int[]{8, 4};		

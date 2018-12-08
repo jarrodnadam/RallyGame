@@ -8,6 +8,7 @@ import com.jme3.app.state.AppStateManager;
 
 import car.*;
 import car.ai.FollowWorldAI;
+import car.ai.LinearLearnAI;
 import car.data.Car;
 import car.ray.RayCarControl;
 import game.App;
@@ -34,7 +35,7 @@ public class DriveDemo extends DriveBase {
     	this.carBuilder.addCar(0, car, world.getStartPos(), world.getStartRot(), true, null); //even though they aren't a player
 
     	RayCarControl car = this.carBuilder.get(0);
-    	car.attachAI(new FollowWorldAI(car, (DefaultBuilder)world));
+    	car.attachAI(new LinearLearnAI(car, (DefaultBuilder)world));
     	
     	uiNode.cleanup(); //TODO because the player was removed
     	app.getStateManager().detach(uiNode);

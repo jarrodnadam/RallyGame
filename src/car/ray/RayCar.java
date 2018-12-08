@@ -41,15 +41,15 @@ public class RayCar implements PhysicsTickListener {
 	protected final RigidBodyControl rbc;
 	
 	//simulation variables
-	protected final RayWheel[] wheels;
+	public final RayWheel[] wheels;
 	private float steeringCur;
 	private float brakingCur;
 	private boolean handbrakeCur;
 	protected final float[] wheelTorque;
 	
 	//debug values
-	protected float dragValue;
-	protected float driftAngle;
+	public float dragValue;
+	public float driftAngle;
 	public final Vector3f planarGForce;
 	
 	public RayCar(CollisionShape shape, CarDataConst carData) {

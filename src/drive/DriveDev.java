@@ -29,7 +29,7 @@ public class DriveDev extends DriveBase {
     	super.initialize(stateManager, app);
     	
     	//init input gui
-		carEditor = new CarEditor(this.cb.get(0), (data) -> { reloadCar(data); });
+		carEditor = new CarEditor(this.carBuilder.get(0), (data) -> { reloadCar(data); });
 		carEditor.setLocalTranslation(H.screenTopLeft().add(0, -20, 0));
 		App.rally.getGuiNode().attachChild(carEditor);
 		
@@ -38,7 +38,7 @@ public class DriveDev extends DriveBase {
 		App.rally.getGuiNode().attachChild(worldEditor);
 		
 		Vector3f size = new Vector3f(400,400,0);
-		wheelGraphs = new TractionCurveGraph(this.cb.get(0), size);
+		wheelGraphs = new TractionCurveGraph(this.carBuilder.get(0), size);
 		wheelGraphs.setLocalTranslation(H.screenBottomRight().subtract(size.add(-5,-25,0)));
 		App.rally.getGuiNode().attachChild(wheelGraphs);
 	}
@@ -50,10 +50,10 @@ public class DriveDev extends DriveBase {
 	}
 
 	public void reloadCar(CarDataConst data) {
-		this.cb.get(0).getCarData().loaded = false; //TODO feels like a hack?
+		this.carBuilder.get(0).getCarData().loaded = false; //TODO feels like a hack?
 		
-		this.cb.setCarData(0, data);
-		wheelGraphs.updateMyPhysicsVehicle(this.cb.get(0));
+		this.carBuilder.setCarData(0, data);
+		wheelGraphs.updateMyPhysicsVehicle(this.carBuilder.get(0));
 	}
 	
 	public void reloadWorld(World world) {
@@ -63,9 +63,9 @@ public class DriveDev extends DriveBase {
 		App.rally.getStateManager().attach(this.world);
 		
 		//reset car
-		this.cb.get(0).setPhysicsLocation(world.getStartPos());
-		this.cb.get(0).setLinearVelocity(new Vector3f(0,0,0));
-		this.cb.get(0).setPhysicsRotation(world.getStartRot());
+		this.carBuilder.get(0).setPhysicsLocation(world.getStartPos());
+		this.carBuilder.get(0).setLinearVelocity(new Vector3f(0,0,0));
+		this.carBuilder.get(0).setPhysicsRotation(world.getStartRot());
 	}
 	
 	@Override

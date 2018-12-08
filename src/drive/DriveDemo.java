@@ -30,20 +30,20 @@ public class DriveDemo extends DriveBase {
     	
     	//remove all stuff we want and player from everything
     	
-    	this.cb.removePlayer(0);
-    	this.cb.addCar(0, car, world.getStartPos(), world.getStartRot(), true, null); //even though they aren't a player
+    	this.carBuilder.removePlayer(0);
+    	this.carBuilder.addCar(0, car, world.getStartPos(), world.getStartRot(), true, null); //even though they aren't a player
 
-    	RayCarControl car = this.cb.get(0);
+    	RayCarControl car = this.carBuilder.get(0);
     	car.attachAI(new FollowWorldAI(car, (DefaultBuilder)world));
     	
-    	uiNode.cleanup(); //TODO why?
+    	uiNode.cleanup(); //TODO because the player was removed
     	app.getStateManager().detach(uiNode);
-    	uiNode = new CarUI(cb.get(0));
+    	uiNode = new CarUI(carBuilder.get(0));
 		app.getStateManager().attach(uiNode);
 		
 		App.rally.getStateManager().detach(camera);
 		app.getInputManager().removeRawInputListener(camera);
-		camera = new CarCamera("Camera", App.rally.getCamera(), cb.get(0));
+		camera = new CarCamera("Camera", App.rally.getCamera(), carBuilder.get(0));
 		App.rally.getStateManager().attach(camera);
 		app.getInputManager().addRawInputListener(camera);
 		

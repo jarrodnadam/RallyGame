@@ -42,24 +42,24 @@ public class DriveCrash extends DriveBase {
 	public void update(float tpf) {
 		super.update(tpf);
 		
-		if (this.cb.getCount() < maxCount && App.rally.frameCount % 60 == 0) {
+		if (this.carBuilder.getCount() < maxCount && App.rally.frameCount % 60 == 0) {
 			Vector3f spawn = H.randFromArray(spawns);
-			this.cb.addCar(nextId, them, spawn, world.getStartRot(), false, null);
+			this.carBuilder.addCar(nextId, them, spawn, world.getStartRot(), false, null);
 			nextId++;
 		}
 		
 		//check if any are upside down, if so kill them
 		//TODO check if collisions are from the player
 		List<RayCarControl> toKill = new ArrayList<RayCarControl>();
-		for (RayCarControl c: this.cb.getAll()) {
-			if (c.up.y < 0 && c != this.cb.get(0)) {
+		for (RayCarControl c: this.carBuilder.getAll()) {
+			if (c.up.y < 0 && c != this.carBuilder.get(0)) {
 				toKill.add(c); //TODO
 			}
 		}
 		for (RayCarControl c: toKill) {
 			//killed
 			totalKilled++;
-			cb.removePlayer(c);
+			carBuilder.removePlayer(c);
 		}
 			
 		

@@ -23,7 +23,7 @@ public class DriveAI extends DriveBase {
     	super.initialize(stateManager, app);
     	
     	for (int i = 0; i < this.themCount; i++)
-    		this.cb.addCar(i + 1, them, world.getStartPos(), world.getStartRot(), false, null);
+    		this.carBuilder.addCar(i + 1, them, world.getStartPos(), world.getStartRot(), false, null);
 	}
 	
 	public void update(float tpf) {

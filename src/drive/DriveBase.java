@@ -22,7 +22,7 @@ public class DriveBase extends AbstractAppState {
 	public World world;
 
 	//car stuff
-	public CarBuilder cb;
+	public CarBuilder carBuilder;
 	protected Car car;
 	
 	//gui and camera stuff
@@ -60,16 +60,16 @@ public class DriveBase extends AbstractAppState {
     	app.getStateManager().attach(world);
     	
 		//build player
-		this.cb = new CarBuilder();
-		cb.addCar(0, car, world.getStartPos(), world.getStartRot(), true, null);
-		app.getStateManager().attach(cb);
+		this.carBuilder = new CarBuilder();
+		carBuilder.addCar(0, car, world.getStartPos(), world.getStartRot(), true, null);
+		app.getStateManager().attach(carBuilder);
 		app.getStateManager().attach(menu);
 		
-		uiNode = new CarUI(cb.get(0));
+		uiNode = new CarUI(carBuilder.get(0));
 		app.getStateManager().attach(uiNode);
 		
 		//initCameras
-		camera = new CarCamera("Camera", App.rally.getCamera(), cb.get(0));
+		camera = new CarCamera("Camera", App.rally.getCamera(), carBuilder.get(0));
 		App.rally.getStateManager().attach(camera);
 		app.getInputManager().addRawInputListener(camera);
 				
@@ -88,7 +88,7 @@ public class DriveBase extends AbstractAppState {
 		this.world.setEnabled(enabled); //we kinda don't want the physics running while paused
 		App.rally.bullet.setEnabled(enabled);
 		this.camera.setEnabled(enabled);
-		this.cb.setEnabled(enabled);
+		this.carBuilder.setEnabled(enabled);
 	}
 	
 	@Override
@@ -109,8 +109,8 @@ public class DriveBase extends AbstractAppState {
 		super.cleanup();
 		Log.p("cleaning drive class");
 		
-		App.rally.getStateManager().detach(cb);
-		cb = null;
+		App.rally.getStateManager().detach(carBuilder);
+		carBuilder = null;
 		
 		App.rally.getStateManager().detach(menu);
 		menu = null;

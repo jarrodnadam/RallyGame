@@ -20,6 +20,26 @@ public class Log {
 			System.out.print(o + sep);
 		System.out.println();
 	}
+	
+	public static void p(int[] ol, String sep) {
+		if (sep == null) sep = "\n";
+		System.out.print("[");
+		for (int o: ol)
+			System.out.print(o + sep);
+		System.out.print("]");
+		System.out.println();
+	}
+	
+	
+	public static void p(float[] ol, String sep) {
+		if (sep == null) sep = "\n";
+		System.out.print("[");
+		for (float o: ol)
+			System.out.print(o + sep);
+		System.out.print("]");
+		System.out.println();
+	}
+	
 	public static void p(Object... os) {
 		for (Object o : os) {
 	        System.out.print(o + " ");
@@ -30,6 +50,73 @@ public class Log {
 	public static void p(Iterable<Object> ol, String sep) {
 		p(ol, sep);
 	}
+	
+	public static void p(int[][] matrix, String sep) {
+		if (matrix == null)
+			return;
+		if (matrix.length == 0)
+			return;
+		
+		System.out.println("Matrix:");
+		System.out.print("[");
+		for (int i = 0; i < matrix.length; i++) {
+			System.out.print("[");
+			for (int j = 0; j < matrix[i].length; j++) {
+				System.out.print(matrix[i][j] + sep);
+			}
+			System.out.print("]");
+			System.out.println();
+		}
+		System.out.print("]");
+	}
+	
+	public static void p(float[][] matrix, String sep) {
+		if (matrix == null)
+			return;
+		if (matrix.length == 0)
+			return;
+		
+		System.out.println("Matrix:");
+		System.out.print("[");
+		for (int i = 0; i < matrix.length; i++) {
+			System.out.print("[");
+			for (int j = 0; j < matrix[i].length; j++) {
+				System.out.print(matrix[i][j] + sep);
+			}
+			System.out.print("],");
+		}
+		System.out.print("]");
+		System.out.println();
+	}
+	
+	public static void p(float[][][] cube, String sep) {
+		if (cube == null)
+			return;
+		if (cube.length == 0)
+			return;
+		
+		System.out.println("Cube:");
+		
+		System.out.print("[");
+		for (int i = 0; i < cube.length; i++) {
+			System.out.print("[");
+			for (int j = 0; j < cube[i].length; j++) {
+				System.out.print("[");
+				for (int k = 0; k < cube[i][j].length; k++) {
+					if (cube[i][j] == null) {
+						System.out.print("null" + sep);
+					} else {
+						System.out.print(cube[i][j][k] + sep);
+					}
+				}
+				System.out.print("],");
+				System.out.println();
+			}
+			System.out.print("],");
+			System.out.println();
+		}
+		System.out.print("]");
+	}
 
 	public static void p(Object[][] matrix, String sep) {
 		if (matrix == null)
@@ -39,7 +126,7 @@ public class Log {
 		
 		System.out.println("Matrix:");
 		for (int i = 0; i < matrix.length; i++) {
-			for (int j = 0; j < matrix[0].length; j++) {
+			for (int j = 0; j < matrix[i].length; j++) {
 				System.out.print(matrix[i][j] + sep);
 			}
 			System.out.println();
